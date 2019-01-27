@@ -1,0 +1,15 @@
+<launch>
+    # Configuration file for the grasp action server.
+    <arg name="config_file" default="$(find grasp_planning_graspit_ros)/config/GraspItServices.yaml"/>
+
+    # Load the ROS parameters from config file: 
+    <arg name="node_name" default="graspit_planning_service"/>
+    <rosparam ns="$(arg node_name)" file="$(arg config_file)"/>
+ 
+    # the directory where results should be saved
+    <arg name="results_output_directory"/>
+
+	<node name="$(arg node_name)" pkg="grasp_planning_graspit_ros" type="grasp_planning_service" respawn="false" output="screen">
+        <param name="results_output_directory" value="$(arg results_output_directory)"/>
+	</node>
+</launch>
