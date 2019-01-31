@@ -27,3 +27,15 @@ make -j5
 ```
 Once the graspit is installed using the default instructions given on the 
 [graspit homepage](https://graspit-simulator.github.io/build/html/installation_linux.html) (the instructions are written above)
+## Setting Up Environment Variable 
+We can add the graspit environment variable to the *bashrc* file using the following command
+```
+echo "export GRASPIT=<directory that contains model and world folder>" >> ~/.bashrc    
+source ~/.bashrc
+```
+** Example 
+```
+echo "export GRASPIT=/home/muhayyuddin/Software/Graspit/graspit">>~/.bashrc
+source ~/.bashrc
+```
+It will permanently setup the graspit environment variable.
