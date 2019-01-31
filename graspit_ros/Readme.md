@@ -33,7 +33,7 @@ We can add the graspit environment variable to the *bashrc* file using the follo
 echo "export GRASPIT=<directory that contains model and world folder>" >> ~/.bashrc    
 source ~/.bashrc
 ```
-**Example 
+**Example** 
 ```
 echo "export GRASPIT=/home/muhayyuddin/Software/Graspit/graspit">>~/.bashrc
 source ~/.bashrc
