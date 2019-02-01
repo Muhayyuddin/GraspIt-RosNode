@@ -24,6 +24,7 @@ mkdir build
 cd build
 cmake ..
 make -j5
+sudo make install 
 ```
 Once the graspit is installed using the default instructions given on the 
 [graspit homepage](https://graspit-simulator.github.io/build/html/installation_linux.html) (the instructions are written above)
