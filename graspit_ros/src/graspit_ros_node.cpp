@@ -89,7 +89,6 @@ bool grasp_planning(graspit_ros::GraspPlanning::Request  &req,
         res.grasping_poses[i].translation.x=(*it).getObjectToHandTransform().translation()(0);
         res.grasping_poses[i].translation.y=(*it).getObjectToHandTransform().translation()(1);
         res.grasping_poses[i].translation.z=(*it).getObjectToHandTransform().translation()(2);
-
         res.grasping_poses[i].rotation.x=ori.x();
         res.grasping_poses[i].rotation.y=ori.y();
         res.grasping_poses[i].rotation.z=ori.z();

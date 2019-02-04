@@ -11,6 +11,10 @@ int32 keepMaxPlanningResults
     	#Finalize each planning result with an "auto-grasp" to ensure there really are
     	#contacts between fingers and objects (sometimes, the grasp result is just very
     	#close to the object, but not really touching it).
+	#Name of the object that we want to grasp
+string objectName
+	#Type of action that robot wants to perform after graspig
+string actionType
 bool finishWithAutograsp
 	#Save the results in .iv and world formates
 bool saveVisualResults

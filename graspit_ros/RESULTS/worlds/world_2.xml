@@ -10,12 +10,12 @@
 		<filename>models/robots/fetch_gripper/fetch_gripper.xml</filename>
 		<dofValues>+0 </dofValues>
 		<transform>
-			<fullTransform>(+0.170596 -0.707526 -0.660333 +0.185106)[+31.6044 -193.125 +87.2918]</fullTransform>
+			<fullTransform>(+0.441734 +0.413509 -0.541774 -0.583406)[-23.4503 +175.297 +104.028]</fullTransform>
 		</transform>
 	</robot>
 	<camera>
-		<position>+19.5965 -72.1593 +322.068</position>
+		<position>-8.12003 +39.8206 +381.088</position>
 		<orientation>+0 +0 +0 +1</orientation>
-		<focalDistance>+169.725</focalDistance>
+		<focalDistance>+211.418</focalDistance>
 	</camera>
 </world>
