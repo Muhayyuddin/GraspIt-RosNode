@@ -140,7 +140,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
  add_executable(graspit_ros_node src/graspit_ros_node.cpp)
  add_executable(graspit_ros_node_client src/graspit_ros_node_client.cpp)
-
+ add_executable(graspit_ros_synergies_client src/graspit_ros_synergies_client.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -156,6 +156,9 @@ include_directories(
    ${catkin_LIBRARIES}
  )
  target_link_libraries(graspit_ros_node_client
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(graspit_ros_synergies_client
    ${catkin_LIBRARIES}
  )
 #############

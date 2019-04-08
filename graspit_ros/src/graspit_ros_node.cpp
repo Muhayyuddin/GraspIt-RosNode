@@ -85,6 +85,7 @@ bool grasp_planning(graspit_ros::GraspPlanning::Request  &req,
     std::cout<<"Grasp size" <<allGrasps.size()<<std::endl;
     for (it = allGrasps.begin(); it != allGrasps.end(); ++it)
     {
+        std::vector<double>conf = (*it).getEigenGraspValues();
         Eigen::Quaterniond ori((*it).getObjectToHandTransform().rotation());
         res.grasping_poses[i].translation.x=(*it).getObjectToHandTransform().translation()(0);
         res.grasping_poses[i].translation.y=(*it).getObjectToHandTransform().translation()(1);
@@ -93,10 +94,13 @@ bool grasp_planning(graspit_ros::GraspPlanning::Request  &req,
         res.grasping_poses[i].rotation.y=ori.y();
         res.grasping_poses[i].rotation.z=ori.z();
         res.grasping_poses[i].rotation.w=ori.w();
+        std::cout<<"size of Eigen Vector :" <<conf.size();
+        std::cout<<"Eigen Grasp Vector : { " <<conf[0]<<" , "<<conf[1]<<" , "<<conf[2]<<" , "<<conf[3]<<" , "<<conf[4]<<" }"<<std::endl;
 
-        std::cout << *it << std::endl;;
-        std::cout <<"Obj to hand rot: "<< ori.x()<<" "<<ori.y()<<" "<<ori.z()<<" "<<ori.w()<< std::endl;;
-        //std::cout <<"Obj to hand translation: "<< (*it).getObjectToHandTransform().translation()(0)<<" "<<(*it).getObjectToHandTransform().translation()(1)<<" "<<(*it).getObjectToHandTransform().translation()(2)<<" "<<(*it).getObjectToHandTransform().translation()(3)<< std::endl;;
+        //std::cout << (*it).getObjectToHandTransform().rotation() << std::endl;;
+        std::cout <<"Obj to hand rot: "<<ori.w()<<" "<< ori.x()<<" "<<ori.y()<<" "<<ori.z()<< std::endl;;
+        std::cout <<"Obj to hand translation: "<< res.grasping_poses[i].translation.x<<" "
+                  <<res.grasping_poses[i].translation.y<<" "<<res.grasping_poses[i].translation.z<< std::endl;;
         i++;
 
     }
