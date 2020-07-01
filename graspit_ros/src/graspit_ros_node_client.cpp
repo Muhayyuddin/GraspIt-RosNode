@@ -10,14 +10,26 @@
 
 int main(int argc, char **argv)
 {
+    if(argc<3)
+    {
+        std::cout << "Num of parameters is not correct\n";
+        std::cout << "Should be: rosrun graspit_ros world_file_path output_path\n";
+
+        return -1;
+    }
+    ROS_INFO("Starting grasping_node_client");    
+    
     ros::init(argc, argv, "grasping_node_client");
     ros::NodeHandle n;
+    
+    ROS_INFO("Using world_file_path: %s",argv[1]);
+    ROS_INFO("Using output_path: %s", argv[2]);
 
     ros::ServiceClient GraspPlanning_client = n.serviceClient<graspit_ros::GraspPlanning>("graspit_ros_node/grasp_planning");
     graspit_ros::GraspPlanning GraspPlanning_srv;
 
-    GraspPlanning_srv.request.world_file_path="/home/muhayyuddin/graspit_ws/src/GraspIt-RosNode/graspit_ros/models/worlds/Kitchen_pal_gripper.xml";
-    GraspPlanning_srv.request.output_path="/home/muhayyuddin/graspit_ws/src/GraspIt-RosNode/graspit_ros/RESULTS";
+    GraspPlanning_srv.request.world_file_path=argv[1];
+    GraspPlanning_srv.request.output_path=argv[2];
     GraspPlanning_srv.request.maxPlanningSteps=70000;
     GraspPlanning_srv.request.repeatPlanning=1;
     GraspPlanning_srv.request.keepMaxPlanningResults=2;
@@ -25,7 +37,13 @@ int main(int argc, char **argv)
     GraspPlanning_srv.request.saveVisualResults=true;
     //GraspPlanning_srv.request.objectName="cup";
     //GraspPlanning_srv.request.actionType="serve";
+    
+    
+    ros::service::waitForService("graspit_ros_node/grasp_planning");
+    
     GraspPlanning_client.call(GraspPlanning_srv);
-    ROS_INFO("Grasp planning service advertised successfully!");
+    ROS_INFO("Grasp planning service called successfully!");
+
     ros::spin();
 }
+
