@@ -110,7 +110,7 @@ generate_messages(DEPENDENCIES roscpp std_msgs geometry_msgs)
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES graspit_client
-#  CATKIN_DEPENDS grasp_planning_graspit roscpp rospy
+  CATKIN_DEPENDS grasp_planning_graspit roscpp rospy
 #  DEPENDS system_lib
 )
 
@@ -140,7 +140,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
  add_executable(graspit_ros_node src/graspit_ros_node.cpp)
  add_executable(graspit_ros_node_client src/graspit_ros_node_client.cpp)
- add_executable(graspit_ros_synergies_client src/graspit_ros_synergies_client.cpp)
+ #add_executable(graspit_ros_synergies_client src/graspit_ros_synergies_client.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -151,6 +151,9 @@ include_directories(
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
+add_dependencies(graspit_ros_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(graspit_ros_node_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 ## Specify libraries to link a library or executable target against
  target_link_libraries(graspit_ros_node
    ${catkin_LIBRARIES}
@@ -158,9 +161,9 @@ include_directories(
  target_link_libraries(graspit_ros_node_client
    ${catkin_LIBRARIES}
  )
- target_link_libraries(graspit_ros_synergies_client
-   ${catkin_LIBRARIES}
- )
+ #target_link_libraries(graspit_ros_synergies_client
+ #  ${catkin_LIBRARIES}
+ #)
 #############
 ## Install ##
 #############

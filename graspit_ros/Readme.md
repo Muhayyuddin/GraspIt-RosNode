@@ -39,6 +39,15 @@ source ~/.bashrc
 echo "export GRASPIT=/home/muhayyuddin/Software/Graspit/graspit">>~/.bashrc
 source ~/.bashrc
 ```
+
+or to use the demos provided in the current package:
+```
+echo "export GRASPIT=/home/muhayyuddin/Software/GraspIt-RosNode/graspit_ros/demos">>~/.bashrc
+source ~/.bashrc
+```
+
+
+
 It will permanently setup the graspit environment variable.
 ## Compiling the Graspit_ros Node
 We have all set to compile the graspit_ros node. Below are the instructions to compile it.
@@ -52,3 +61,10 @@ git clone https://github.com/Muhayyuddin/GraspIt-RosNode.git
 cd ..
 catkin_make
 ```
+
+## Launching the demo
+You can edit the demo.launch file to set your defaults world and output paths, or write them when calling roslaunch:
+```
+roslaunch graspit_ros demo.launch world_file_path="/your/path/GraspIt-RosNode/graspit_ros/models/worlds/Kitchen_pal_gripper_cup_simple.xml" keepMaxPlanningResults=5 output_path:=/your/path/GraspIt-RosNode/graspit_ros/RESULTS"
+```
+
