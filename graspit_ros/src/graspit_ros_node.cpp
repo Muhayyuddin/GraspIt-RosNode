@@ -62,17 +62,16 @@ bool grasp_planning(graspit_ros::GraspPlanning::Request  &req,
 
     if(req.saveVisualResults)
     {
-    // specify where you want to save them:
-    std::string resultsWorldDirectory = outputDirectory + "/worlds";
-    // each result file will start with this prefix:
-    std::string filenamePrefix = "world";
-    // specify to save as inventor files:
-    bool saveInventor = true;
-    // specify to save as graspit world files:
-    bool saveGraspit = true;
+        // specify where you want to save them:
+        std::string resultsWorldDirectory = outputDirectory + "/worlds";
+        // each result file will start with this prefix:
+        std::string filenamePrefix = "world";
+        // specify to save as inventor files:
+        bool saveInventor = true;
+        // specify to save as graspit world files:
+        bool saveGraspit = true;
 
-
-    planner->saveResultsAsWorldFiles(resultsWorldDirectory, filenamePrefix, saveGraspit, saveInventor, createDir);
+        planner->saveResultsAsWorldFiles(resultsWorldDirectory, filenamePrefix, saveGraspit, saveInventor, createDir);
     }
     // Iterate through all results and print information about the grasps:
     std::cout<<"Results are saved"<<std::endl;
@@ -87,9 +86,10 @@ bool grasp_planning(graspit_ros::GraspPlanning::Request  &req,
     {
         std::vector<double>conf = (*it).getEigenGraspValues();
         Eigen::Quaterniond ori((*it).getObjectToHandTransform().rotation());
-        res.grasping_poses[i].translation.x=(*it).getObjectToHandTransform().translation()(0);
-        res.grasping_poses[i].translation.y=(*it).getObjectToHandTransform().translation()(1);
-        res.grasping_poses[i].translation.z=(*it).getObjectToHandTransform().translation()(2);
+        //returns the position in meters (Graspit works in mm).
+        res.grasping_poses[i].translation.x=(*it).getObjectToHandTransform().translation()(0)*0.001;
+        res.grasping_poses[i].translation.y=(*it).getObjectToHandTransform().translation()(1)*0.001;
+        res.grasping_poses[i].translation.z=(*it).getObjectToHandTransform().translation()(2)*0.001;
         res.grasping_poses[i].rotation.x=ori.x();
         res.grasping_poses[i].rotation.y=ori.y();
         res.grasping_poses[i].rotation.z=ori.z();
@@ -105,12 +105,12 @@ bool grasp_planning(graspit_ros::GraspPlanning::Request  &req,
 
     }
 
-std::vector<std::string> object=graspitMgr->getObjectNames(true);
-std::vector<std::string> robot=graspitMgr->getRobotNames();
-graspitMgr->removeObject(object[0]);
-graspitMgr->removeRobot(robot[0]);
+    std::vector<std::string> object=graspitMgr->getObjectNames(true);
+    std::vector<std::string> robot=graspitMgr->getRobotNames();
+    graspitMgr->removeObject(object[0]);
+    graspitMgr->removeRobot(robot[0]);
 
-//std::cout<<"Robot + object "<<grpobj.at(0)<<" "<<robot.at(0)<<std::endl;
+    //std::cout<<"Robot + object "<<grpobj.at(0)<<" "<<robot.at(0)<<std::endl;
 
     return true;
 }
