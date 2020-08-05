@@ -40,6 +40,8 @@ bool grasp_planning(graspit_ros::GraspPlanning::Request  &req,
 
 
     // Load the graspit world
+    //std::cout<<"\nPRESS 1..."<<std::endl;
+    //std::cin.get();
     graspitMgr->loadWorld(worldFilename);
 
     // if the output directory does not exist yet, create it?
@@ -106,9 +108,18 @@ bool grasp_planning(graspit_ros::GraspPlanning::Request  &req,
     }
 
     std::vector<std::string> object=graspitMgr->getObjectNames(true);
+    std::vector<std::string> obstacle=graspitMgr->getObjectNames(false);
     std::vector<std::string> robot=graspitMgr->getRobotNames();
-    graspitMgr->removeObject(object[0]);
-    graspitMgr->removeRobot(robot[0]);
+    for(int i=0; i<object.size();i++) graspitMgr->removeObject(object[i]);
+    for(int i=0; i<obstacle.size();i++) graspitMgr->removeObject(obstacle[0]);
+    for(int i=0; i<robot.size();i++) graspitMgr->removeRobot(robot[0]);
+
+    std::cout<<"objects = "<<object[0]<<std::endl;
+    std::cout<<"obstacle = "<<obstacle[0]<<std::endl;
+    std::cout<<"robots = "<<robot[0]<<std::endl;
+
+    //std::cout<<"\nPRESS END..."<<std::endl;
+    //std::cin.get();
 
     //std::cout<<"Robot + object "<<grpobj.at(0)<<" "<<robot.at(0)<<std::endl;
 

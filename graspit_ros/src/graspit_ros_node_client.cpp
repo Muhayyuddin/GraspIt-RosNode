@@ -40,9 +40,19 @@ int main(int argc, char **argv)
     
     
     ros::service::waitForService("graspit_ros_node/grasp_planning");
-    
     GraspPlanning_client.call(GraspPlanning_srv);
     ROS_INFO("Grasp planning service called successfully!");
+
+    //Wait for user to press a key
+    std::cout<<"\nPRESS A KEY TO START 2..."<<std::endl;
+    std::cin.get();
+    GraspPlanning_client.call(GraspPlanning_srv);
+    ROS_INFO("Grasp planning service called successfully!");
+
+    //Wait for user to press a key
+    //std::cout<<"\nPRESS A KEY TO START 3..."<<std::endl;
+    //std::cin.get();
+    //GraspPlanning_client.call(GraspPlanning_srv);
 
     ros::spin();
 }
