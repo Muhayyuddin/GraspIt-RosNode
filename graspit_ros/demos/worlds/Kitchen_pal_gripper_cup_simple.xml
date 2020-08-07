@@ -7,9 +7,9 @@
 	        </transform>
 	</obstacle>
 	<graspableBody>
-		<filename>models/objects/cup_blue.xml</filename>
+		<filename>models/objects/can.xml</filename>
 		<transform>
-            <fullTransform>(+1 0 0 0)[+1370 0 950]</fullTransform>
+            <fullTransform>(+1 0 0 0)[+1100 0 910]</fullTransform>
 		</transform>
 	</graspableBody>
 	<robot>
