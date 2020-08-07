@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch> 
+  <arg name="world_file_path" default="/home/jan/git-projects/grasp/GraspIt-RosNode/graspit_ros/demos/worlds/Kitchen_pal_gripper_can_simple.xml" />
+  <arg name="output_path" default="/home/jan/git-projects/grasp/GraspIt-RosNode/graspit_ros/RESULTS" />
+  <node
+    pkg="graspit_ros"
+    type="graspit_ros_node_client"
+    name="graspit_ros_node_client"
+    args="$(arg world_file_path) $(arg output_path)"
+    output = "screen"
+  />
+  <node
+    pkg="graspit_ros"
+    type="graspit_ros_node"
+    name="graspit_ros_node" 
+    output = "screen"
+  />
+</launch>
+
+
+
+
